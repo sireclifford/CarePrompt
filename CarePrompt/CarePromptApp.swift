@@ -12,7 +12,8 @@ import SwiftData
 struct CarePromptApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Resident.self,
+            Symbol.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
