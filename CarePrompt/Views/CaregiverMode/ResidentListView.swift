@@ -27,7 +27,9 @@ struct ResidentListView: View {
     var body: some View {
         NavigationStack {
             List(filteredResidents) { resident in
-                ResidentRowView(resident: resident)
+                NavigationLink(destination: ResidentBoardView(resident: resident)){
+                    ResidentRowView(resident: resident)
+                }
             }
             .navigationTitle("Residents")
             .searchable(text: $searchText, prompt: "Search by name, room, or unit")
