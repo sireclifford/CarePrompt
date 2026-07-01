@@ -4,6 +4,7 @@ import SwiftData
 struct ResidentListView: View {
     @Query private var residents: [Resident]
     @State private var searchText = ""
+    @State private var showingSettings = false
     
     init() {
         _residents = Query(sort: \Resident.roomNumber, order: .forward)
@@ -32,7 +33,20 @@ struct ResidentListView: View {
                 }
             }
             .navigationTitle("Residents")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showingSettings = true
+                    } label: {
+                        Image(systemName: "gearshape.fill")
+                    }
+                }
+            }
+            .sheet(isPresented: $showingSettings) {
+                SettingsView()
+            }
             .searchable(text: $searchText, prompt: "Search by name, room, or unit")
         }
+        
     }
 }
