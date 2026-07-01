@@ -17,7 +17,7 @@ struct ResidentBoardView: View {
         ScrollView {
             LazyVGrid(columns: gridColumns, spacing: 16) {
                 ForEach(sortedSymbols) { symbol in
-                    SymbolCardView(symbol: symbol, stage: stage)
+                    SymbolCardView(symbol: symbol, stage: stage, language: resident.preferredLanguage)
                 }
             }
             .padding(16)

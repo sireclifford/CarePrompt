@@ -3,6 +3,7 @@ import SwiftUI
 struct SymbolCardView: View {
     let symbol: Symbol
     let stage: DementiaStage
+    let language: String
     
     @State private var isPressed = false
     
@@ -36,6 +37,7 @@ struct SymbolCardView: View {
     
     private func handleTap(){
         isPressed = true
+        SpeechService.shared.speak(symbol.text, language: language)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
             isPressed = false
         }
