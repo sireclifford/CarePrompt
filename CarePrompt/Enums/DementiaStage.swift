@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 enum DementiaStage: String, CaseIterable {
     case early = "early"
@@ -17,10 +18,11 @@ enum DementiaStage: String, CaseIterable {
     }
     
     var symbolsPerRow: Int {
+        let isIpad = UIDevice.current.userInterfaceIdiom == .pad
         switch self {
-        case .early: return 2
-        case .middle: return 2
-        case .late: return 1
+        case .early: return isIpad ? 3 : 2
+        case .middle: return isIpad ? 2 : 2
+        case .late: return isIpad ? 1 : 1
             
         }
     }
@@ -34,10 +36,11 @@ enum DementiaStage: String, CaseIterable {
     }
     
     var cardSize: CGFloat {
+        let isIpad = UIDevice.current.userInterfaceIdiom == .pad
         switch self {
-        case .early: return 150
-        case .middle: return 180
-        case .late: return 260
+        case .early: return isIpad ? 220 : 150
+        case .middle: return isIpad ? 260 : 180
+        case .late: return isIpad ? 360 : 260
         }
     }
     
