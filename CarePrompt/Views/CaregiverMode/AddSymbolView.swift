@@ -54,6 +54,8 @@ struct AddSymbolView: View {
                                 .font(.caption)
                                 .foregroundStyle(.tertiary)
                         }
+                        .frame(maxWidth: .infinity)
+                        .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
                 }
