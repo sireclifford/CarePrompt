@@ -14,13 +14,19 @@ struct ResidentBoardView: View {
     }
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: gridColumns, spacing: 16) {
-                ForEach(sortedSymbols) { symbol in
-                    SymbolCardView(symbol: symbol, stage: stage, language: resident.preferredLanguage)
+        Group {
+            if sortedSymbols.isEmpty {
+                EmptyBoardView(residentName: resident.name)
+            } else {
+                ScrollView {
+                    LazyVGrid(columns: gridColumns, spacing: 16) {
+                        ForEach(sortedSymbols) { symbol in
+                            SymbolCardView(symbol: symbol, stage: stage, language: resident.preferredLanguage)
+                        }
+                    }
+                    .padding(16)
                 }
             }
-            .padding(16)
         }
         .navigationTitle(resident.name)
         .navigationBarTitleDisplayMode(.inline)
