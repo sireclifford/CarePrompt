@@ -4,7 +4,18 @@ class SpeechService {
     static let shared = SpeechService()
     private let synthesizer = AVSpeechSynthesizer()
     
-    private init() {}
+    private init() {
+        configureAudioSession()
+    }
+    
+    private func configureAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio, options: [.duckOthers])
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Audio session error: \(error)")
+        }
+    }
     
     func speak(_ text: String, language: String = "en-CA") {
         guard !text.isEmpty else { return }
