@@ -27,9 +27,16 @@ struct ResidentListView: View {
     
     var body: some View {
         NavigationStack {
-            List(filteredResidents) { resident in
-                NavigationLink(destination: ResidentBoardView(resident: resident)){
-                    ResidentRowView(resident: resident)
+            Group {
+                if filteredResidents.isEmpty {
+                    EmptyResidentListView()
+                }
+                else {
+                    List(filteredResidents) { resident in
+                        NavigationLink(destination: ResidentBoardView(resident: resident)){
+                            ResidentRowView(resident: resident)
+                        }
+                    }
                 }
             }
             .navigationTitle("Residents")
