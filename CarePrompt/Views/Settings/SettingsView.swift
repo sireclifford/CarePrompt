@@ -3,6 +3,8 @@ import SwiftData
 
 struct SettingsView: View {
     @AppStorage("dementiaStage") private var stageRaw: String = DementiaStage.early.rawValue
+    @AppStorage("caregiverEditMode") private var caregiverEditMode: Bool = false
+    
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     
@@ -32,6 +34,18 @@ struct SettingsView: View {
                     
                     stageDescriptionView
                 }
+                
+                Section("Edit Mode") {
+                    Toggle(isOn: $caregiverEditMode) {
+                        Label("Caregiver Edit Mode", systemImage: caregiverEditMode ? "lock.open.fill" : "lock.fill")
+                    }
+                    .tint(Color.accentColor)
+                    
+                    Text(caregiverEditMode ? "Editing enabled - caregiver can add and delete symbols" : "Editing disabled - board is locked for resident use.")
+                        .font(.caption)
+                        .foregroundStyle(Color.secondary)
+                }
+                
                 Section("About") {
                     LabeledContent("App", value: "Care Prompt")
                     LabeledContent("Version", value: appVersion)
