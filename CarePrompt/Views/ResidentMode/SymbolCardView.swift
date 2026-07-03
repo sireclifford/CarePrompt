@@ -26,7 +26,7 @@ struct SymbolCardView: View {
                 }
             }
             .frame(width: stage.cardSize, height: stage.cardSize)
-            .background(Color(.systemBackground))
+            .background(Color(.secondarySystemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .shadow(color: .black.opacity(0.08), radius: 6, x: 0, y: 2)
             .scaleEffect(isPressed ? 0.94 : 1.0)
