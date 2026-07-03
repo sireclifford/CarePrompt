@@ -3,17 +3,17 @@ import SwiftData
 
 @Model
 final class Resident {
-    var id: UUID
-    var name: String
-    var dateAdded: Date
-    var unit: String
-    var roomNumber: String
-    var preferredLanguage: String
+    var id: UUID = UUID()
+    var name: String = ""
+    var dateAdded: Date = Date.now
+    var unit: String = ""
+    var roomNumber: String = ""
+    var preferredLanguage: String = "en-CA"
     var photoData: Data?
     var externalID: String?
     
     @Relationship(deleteRule: .cascade, inverse: \Symbol.resident)
-    var symbols: [Symbol] = []
+    var symbols: [Symbol]?
     
     init(name: String, unit: String, roomNumber: String, preferredLanguage: String = "en-CA", photoData: Data? = nil, externalID: String? = nil) {
         self.id = UUID()

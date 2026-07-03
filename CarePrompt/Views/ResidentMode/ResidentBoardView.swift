@@ -10,7 +10,7 @@ struct ResidentBoardView: View {
     }
     
     var sortedSymbols: [Symbol] {
-        resident.symbols.sorted { $0.sortOrder < $1.sortOrder}
+        (resident.symbols ?? []).sorted { $0.sortOrder < $1.sortOrder}
     }
     
     var body: some View {

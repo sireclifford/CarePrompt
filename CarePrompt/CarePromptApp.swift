@@ -8,7 +8,7 @@ struct CarePromptApp: App {
             Resident.self,
             Symbol.self
         ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false, cloudKitDatabase: .automatic)
         
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
@@ -20,13 +20,6 @@ struct CarePromptApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .onAppear {
-                    do {
-                        try seedDataIfNeeded(context: sharedModelContainer.mainContext)
-                    } catch {
-                        print("Seed error: \(error)")
-                    }
-                }
         }
         .modelContainer(sharedModelContainer)
     }
