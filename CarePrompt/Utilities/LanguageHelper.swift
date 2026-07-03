@@ -23,7 +23,7 @@ struct LanguageHelper {
         }
         
         return languageMap
-            .map { LanguageOption(id: $1, displayName: $0)}
+            .map { LanguageOption(id: $1, displayName: $0.prefix(1).uppercased() + $0.dropFirst())}
             .sorted { $0.displayName < $1.displayName }
     }
 }
